@@ -1,6 +1,6 @@
-# windy
+# panda.sh
 
-Boilerplate
+an unloved website
 
 ## Getting Started
 
