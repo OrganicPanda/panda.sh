@@ -53,17 +53,14 @@ const PandaWrapperStyled = styled.div`
 const IndexPage = () => {
   const themeContext = useContext(ThemeContext)
 
-  console.log(themeContext)
-
   return (
     <Layout>
-
       <IndexPageWrapperStyled>
         <HeaderStyled />
 
         <HRStyled />
 
-        <NavStyled>{/* <Link to="/2020/">2020</Link> */}</NavStyled>
+        <NavStyled>{/* <Link to="/somewhere">somewhere</Link> */}</NavStyled>
 
         <ContentStyled>
           <PandaWrapperStyled>
