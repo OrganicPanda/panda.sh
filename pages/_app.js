@@ -2,7 +2,6 @@ import React from "react";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import Head from "next/head";
 import { Normalize } from "styled-normalize";
-import useCustomProperties from "../hooks/useCustomProperties";
 import "../public/pandastyle.css";
 
 const colors = {
@@ -58,14 +57,6 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export default function App({ Component, pageProps }) {
-  const { ref, customProperties } = useCustomProperties([
-    "--🎨-background",
-    "--🎨-heading",
-    "--🎨-art-accent",
-  ]);
-
-  console.log('app customProperties', customProperties);
-
   return (
     <>
       <Head>
@@ -140,16 +131,17 @@ export default function App({ Component, pageProps }) {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="msapplication-TileColor" content="#663399" />
+        <meta name="msapplication-TileColor" content={process.env.THEME_BACKGROUND} key="msapplication-TileColor" />
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-        <meta name="theme-color" content="#663399" />
+        <meta name="theme-color" content={process.env.THEME_BACKGROUND} key="theme-color"/>
+        <meta name="theme-color" content={process.env.THEME_BACKGROUND_DARK} key="theme-color-dark" media="(prefers-color-scheme: dark)"/>
         <meta name="description" content="an unloved website" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyle />
         <Normalize />
-        <Component ref={ref} {...pageProps} />
+        <Component {...pageProps} />
       </ThemeProvider>
     </>
   );
