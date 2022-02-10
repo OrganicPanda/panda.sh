@@ -7,16 +7,16 @@ const StickyWrapperStyled = styled.div`
   position: sticky;
   z-index: 1;
   top: 0;
-  background-color: ${({ theme }) => rgba(theme.palette.background, 0.9)};
+  background-color: var(--🎨-background);
   backdrop-filter: blur(5px);
 `
 
 const HeaderStyled = styled(Header)`
-  padding-bottom: 1em;
+  padding-bottom: var(--📏-container-padding);
 `
 
 const HeaderInsetStyled = styled(Header)`
-  padding: 1em;
+  padding: var(--📏-container-padding);
 `
 
 const HRStyled = styled.hr`
@@ -25,7 +25,7 @@ const HRStyled = styled.hr`
   flex-shrink: 0;
   flex-grow: 0;
   width: 100%;
-  border-bottom: 0.1em solid ${({ theme }) => theme.palette.headline};
+  border-bottom: var(--📏-art-stroke-1) solid var(--🎨-border);
   margin: 0;
 `
 

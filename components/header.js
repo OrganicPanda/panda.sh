@@ -5,11 +5,12 @@ import { H1, A } from './typography'
 
 const AStyled = styled(A)`
   text-decoration: none;
+  color: var(--🎨-heading);
 
   :visited,
   :active,
   :hover {
-    color: inherit;
+    color: var(--🎨-heading);
   }
 `
 
@@ -18,7 +19,7 @@ const Header = ({ className }) => {
     <header className={className}>
       <H1>
         <Link href='/' passHref>
-          <AStyled>panda.sh</AStyled>
+          <AStyled className="🐼-text">panda.sh</AStyled>
         </Link>
       </H1>
     </header>
