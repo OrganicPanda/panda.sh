@@ -7,5 +7,8 @@ module.exports = {
   env: {
     THEME_BACKGROUND: matches[0][1],
     THEME_BACKGROUND_DARK: matches[1][1],
-  }
+  },
+  eslint: {
+    dirs: [],
+  },
 }
