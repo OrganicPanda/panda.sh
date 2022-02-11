@@ -5,7 +5,7 @@ module.exports = {
     jest: true,
     node: true,
   },
-  extends: ["eslint:recommended", "plugin:react/recommended"],
+  extends: ["eslint:recommended", "plugin:react/recommended", "plugin:@next/next/recommended", "prettier"],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,

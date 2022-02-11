@@ -1,11 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Layout = ({ children }) => {
+const Layout = ({ className, children }) => {
   return (
-    <>
-      <main>{children}</main>
-    </>
+      <main className={className}>{children}</main>
   )
 }
 
