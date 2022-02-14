@@ -183,6 +183,9 @@ const defaultSizing = {
     "--📏-border-radius-1": "0.25em",
     "--📏-border-radius-2": "0.5em",
     "--📏-border-radius-3": "0.75em",
+    "--📏-font-size-1": "1em",
+    "--📏-font-size-2": "1.5em",
+    "--📏-font-size-3": "2.5em",
   },
   size1: {
     "--📏-spacing-1": "0.25em",
@@ -213,6 +216,7 @@ const happyHuesToStandardTheme = (happyHuesTheme) => {
   const section1 = {
     "--🎨-background": happyHuesTheme.section1.elements.background,
     "--🎨-heading": happyHuesTheme.section1.elements.headline,
+    "--🎨-subheading": happyHuesTheme.section1.elements.paragraph,
     "--🎨-text": happyHuesTheme.section1.elements.paragraph,
     "--🎨-button-background": happyHuesTheme.section1.elements.button,
     "--🎨-button-text": happyHuesTheme.section1.elements.buttonText,

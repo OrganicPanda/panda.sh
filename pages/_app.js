@@ -2,7 +2,14 @@ import React from "react";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import Head from "next/head";
 import { Normalize } from "styled-normalize";
-import "../public/pandastyle.css";
+import "../public/pandastyle-theme-happyhues.css";
+import "../public/pandastyle-elements.css";
+import "../public/pandastyle-layout.css";
+import "../public/pandastyle-stacks.css";
+import "../public/pandastyle-typography.css";
+import "../public/pandastyle-forms.css";
+import "../public/pandastyle-cards.css";
+import "../public/pandastyle-decorations.css";
 
 const colors = {
   // https://www.happyhues.co/palettes/14
