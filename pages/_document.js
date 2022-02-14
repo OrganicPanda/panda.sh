@@ -31,9 +31,9 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html className="🐼-theme-happyhues-palettes-base 🐼-theme-happyhues-sizing-base 🐼-html">
         <Head>{this.props.styleTags}</Head>
-        <body className="🐼-theme-happyhues-palettes-base 🐼-theme-happyhues-sizing-base 🐼-body">
+        <body className="🐼-body">
           <Main />
           <NextScript />
         </body>

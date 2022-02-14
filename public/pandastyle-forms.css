@@ -1,0 +1,20 @@
+.🐼-button {
+  --📏-button-padding: var(--📏-text-container-padding);
+  --📏-button-padding-horizontal: var(--📏-button-padding);
+  --📏-button-padding-vertical: calc(var(--📏-button-padding) / 2);
+
+  /* Reset */
+  border: none;
+  background-image: none;
+  box-shadow: none;
+  font-size: inherit;
+  margin: 0;
+
+  display: inline-block;
+  padding-top: var(--📏-button-padding-vertical);
+  padding-right: var(--📏-button-padding-horizontal);
+  padding-bottom: var(--📏-button-padding-vertical);
+  padding-left: var(--📏-button-padding-horizontal);
+  background-color: var(--🎨-button-background);
+  color: var(--🎨-button-text);
+}
