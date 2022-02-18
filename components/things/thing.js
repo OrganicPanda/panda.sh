@@ -1,14 +1,7 @@
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  useTransition,
-  Suspense
-} from 'react'
+import React, { useRef } from 'react'
 import { suspend } from 'suspend-react'
 import { useFrame } from '@react-three/fiber'
 import { CSGToBuffers } from './CSGToBuffers'
-import buffersToObject3D from './BuffersToObject3D'
 
 let worker
 if (global?.window?.Worker) {
@@ -44,21 +37,13 @@ const generateModel = (overrides = {}) => {
 
         if (action === 'GENERATE_MODEL_SUCCESS') {
           const { key, model } = payload
-          console.log(
-            `generateModel: key from worker:`,
-            key,
-            key === requestKey
-          )
-          console.log(`generateModel: model from worker:`, model)
 
           if (key === requestKey) {
             // Build using jscad
             const buffers = CSGToBuffers(model)
-            const object3d = buffersToObject3D(buffers)
 
             worker.removeEventListener('message', onMessage)
-            console.log(`generateModel: resolving:`, object3d)
-            resolve(object3d)
+            resolve(buffers)
           }
         }
       }
@@ -77,11 +62,10 @@ const generateModel = (overrides = {}) => {
   })
 }
 
-const Thing = ({ model, scale, position }) => {
+const ThingTwo = ({ buffers, scale, position }) => {
   const meshRef = useRef()
   const rotationRef = useRef()
-  const object3d = model
-  const cloned = object3d.clone()
+  const { vertices, indices } = buffers
 
   // Rotate mesh every frame, this is outside of React without overhead
   useFrame(() => {
@@ -94,30 +78,40 @@ const Thing = ({ model, scale, position }) => {
 
   // Express that as something rect-three-fiber can render
   return (
-    <primitive
-      object={cloned}
-      ref={meshRef}
-      scale={scale / 12}
-      position={position}
-    />
+    <mesh ref={meshRef} scale={scale / 12} position={position}>
+      <bufferGeometry attach='geometry'>
+        <bufferAttribute
+          attachObject={['attributes', 'position']}
+          count={vertices.length / 3}
+          array={vertices}
+          itemSize={3}
+          onUploadCallback={() => console.log('position onUploadCallback')}
+        />
+        <bufferAttribute
+          array={indices}
+          attach='index'
+          count={indices.length}
+          itemSize={1}
+        />
+      </bufferGeometry>
+      <meshPhongMaterial attach='material' color='hotpink' flatShading={true} />
+    </mesh>
   )
 }
 
 const NewThingWrapper = ({ scale, position, wallThickness }) => {
-  const model = suspend(async () => {
+  const buffers = suspend(async () => {
     return await generateModel({
       wallThickness: wallThickness
     })
   }, [wallThickness])
 
-  return <Thing model={model} scale={scale} position={position} />
+  return <ThingTwo buffers={buffers} scale={scale} position={position} />
 }
 
 export default NewThingWrapper
 
-// TODO: how to set the material?
-// material={new THREE.MeshStandardMaterial('hotpink')}
-// TODO: does primative support events?
+// TODO: does this support events?
 // const [hovered, setHover] = useState(false)
 // const [active, setActive] = useState(false)
 // onClick={(e) => setActive(!active)}
