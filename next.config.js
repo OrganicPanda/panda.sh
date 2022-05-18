@@ -13,7 +13,7 @@ const matches = [...theme.matchAll(/--🎨-background:\s*([^$;]+)/gm)]
 
 module.exports = withBundleAnalyzer({
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    config.plugins.push(new WebWorkerPlugin.WebWorkerPlugin({globalObject: 'self' }))
+    config.plugins.push(new WebWorkerPlugin.WebWorkerPlugin({}))
 
     return config
   },
