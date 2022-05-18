@@ -25,7 +25,4 @@ module.exports = withBundleAnalyzer({
   eslint: {
     dirs: []
   },
-  experimental: {
-    concurrentFeatures: true
-  }
 })
