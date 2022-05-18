@@ -7,6 +7,8 @@ import Layout from '../components/layout'
 import PageHeader from '../components/pageheader'
 import useCustomProperties from '../hooks/useCustomProperties'
 import Thing from '../components/things/thing'
+import { QueueLog } from '../components/zust-queue/QueueLog'
+import Range from '../components/range'
 
 const CanvasWrapperStyled = styled.div`
   width: 100%;
@@ -59,7 +61,7 @@ const ThingsPage = () => {
     '--🎨-art-accent'
   ])
 
-  const wallThickness = 2
+  const [wallThickness, setWallThickness] = useState(10)
 
   return (
     <Layout>
@@ -78,7 +80,7 @@ const ThingsPage = () => {
       </div>
 
       <div className='🐼-theme-happyhues-palettes-palette1 🐼-section'>
-        <div className='🐼-section-page-highlight'>
+        <div className='🐼-section-item 🐼-section-page-highlight'>
           <CanvasWrapperStyled ref={ref}>
             <Canvas
               style={{
@@ -106,14 +108,34 @@ const ThingsPage = () => {
                   wallThickness={wallThickness}
                   scale={0.2}
                   position={[-2, -1, 0]}
+                  fill={customProperties?.['--🎨-art-accent']}
                 />
               </Suspense>
               <Suspense fallback={null}>
-                <Thing scale={0.2} position={[2, -1, 0]} />
+                <Thing
+                  scale={0.2}
+                  position={[2, -1, 0]}
+                  fill={customProperties?.['--🎨-art-accent']}
+                />
               </Suspense>
               <OrbitControls />
             </Canvas>
           </CanvasWrapperStyled>
+        </div>
+
+        <div className='🐼-section-item'>
+          <Range
+            value={wallThickness}
+            onChange={e => {
+              setWallThickness(parseInt(e.target.value, 10))
+            }}
+            min='1'
+            max='10'
+          />
+        </div>
+
+        <div className='🐼-section-item'>
+          <QueueLog />
         </div>
       </div>
 
