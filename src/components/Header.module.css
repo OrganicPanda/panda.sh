@@ -1,0 +1,10 @@
+.a {
+  text-decoration: none;
+  color: var(--🎨-heading);
+}
+
+.a:visited,
+.a:active,
+.a:hover {
+  color: var(--🎨-heading);
+}
