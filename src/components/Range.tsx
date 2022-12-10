@@ -2,13 +2,13 @@ import React, { HTMLProps } from 'react'
 
 type RangeProps = HTMLProps<HTMLInputElement>
 
-const Range = ({ value, min, max, ...inputProps }: RangeProps) => {
+export const Range = ({ value, min, max, ...inputProps }: RangeProps) => {
   return (
     <div className="🐼-stack-row">
       <div
         className="🐼-stack-inner"
         style={{
-          alignItems: 'center',
+          alignItems: 'center'
         }}
       >
         <div className="🐼-stack-item">
@@ -31,5 +31,3 @@ const Range = ({ value, min, max, ...inputProps }: RangeProps) => {
     </div>
   )
 }
-
-export default Range
