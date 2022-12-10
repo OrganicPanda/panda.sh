@@ -1,6 +1,6 @@
 const fs = require('fs')
 const theme = fs.readFileSync(
-  __dirname + '/public/pandastyle-theme-happyhues.css',
+  __dirname + '/src/styles/pandastyle/pandastyle-theme-happyhues.css',
   { encoding: 'utf-8' }
 )
 const matches = [...theme.matchAll(/--🎨-background:\s*([^$;]+)/gm)]
