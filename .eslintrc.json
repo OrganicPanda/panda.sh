@@ -36,7 +36,21 @@
     "react/prop-types": "off",
     "react/no-unknown-property": [
       "error",
-      { "ignore": ["args", "transparent", "castShadow", "position"] }
+      {
+        "ignore": [
+          "args",
+          "transparent",
+          "castShadow",
+          "position",
+          "attach",
+          "intensity",
+          "groundColor",
+          "angle",
+          "penumbra",
+          "shadow-mapSize",
+          "shadow-bias"
+        ]
+      }
     ]
   }
 }
