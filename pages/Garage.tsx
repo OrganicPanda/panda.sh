@@ -1,5 +1,10 @@
-import React, { useRef } from 'react'
-import { BoxGeometryProps, Canvas, useFrame } from '@react-three/fiber'
+import React, { ComponentProps, useRef } from 'react'
+import {
+  BoxGeometryProps,
+  Canvas,
+  NodeProps,
+  useFrame
+} from '@react-three/fiber'
 import {
   OrbitControls,
   Edges,
@@ -7,7 +12,9 @@ import {
   GizmoViewport,
   PivotControls,
   Instances,
-  Instance
+  Instance,
+  Bounds,
+  TransformControls
 } from '@react-three/drei'
 import {
   Brush,
@@ -57,15 +64,15 @@ const useAnimatedMeshRotation = (
 // <mesh ref={outline} position={new Vector3(0, 0, 0)}>
 //   <DebugBox args={[40, 10, 10]} />
 // </mesh>
-const DebugBox = (boxProps: BoxGeometryProps) => {
-  return (
-    <>
-      <boxGeometry {...boxProps} />
-      <meshStandardMaterial transparent opacity={0.5} />
-      <Edges />
-    </>
-  )
-}
+// const DebugBox = (boxProps: BoxGeometryProps) => {
+//   return (
+//     <>
+//       <boxGeometry {...boxProps} />
+//       <meshStandardMaterial transparent opacity={0.5} />
+//       <Edges />
+//     </>
+//   )
+// }
 
 // <mesh castShadow position={new Vector3(0, 0, 0)}>
 //   <Subtraction>
@@ -93,9 +100,37 @@ const PivotControlsWithLock = ({ children }: { children: React.ReactNode }) => {
     <PivotControls
       onDragStart={() => setOrbitLock(true)}
       onDragEnd={() => setOrbitLock(false)}
+      anchor={[1, 1, 1]}
+      //   matrix={matrix}
+      // autoTransform={false}
+      onDrag={(...args) => console.log('transform', ...args)}
     >
       {children}
     </PivotControls>
+  )
+}
+
+type BoxSize = BoxGeometryProps['args']
+const DebugBox = ({
+  position,
+  size
+}: {
+  position?: Vector3
+  size: BoxSize
+}) => {
+  const mesh = useRef<Mesh>(null)
+
+  return (
+    <>
+      {mesh.current ? (
+        <TransformControls object={mesh.current} mode="translate" />
+      ) : null}
+      <mesh ref={mesh} position={position}>
+        <boxGeometry args={size} />
+        <meshStandardMaterial transparent opacity={0.5} />
+        <Edges />
+      </mesh>
+    </>
   )
 }
 
@@ -112,29 +147,24 @@ const GarageScene = ({
 
   return (
     <>
-      <PivotControlsWithLock>
-        <mesh castShadow position={new Vector3(0, 0, 0)}>
-          <boxGeometry
-            args={[
-              parameters.GARAGE_WIDTH,
-              parameters.WALL_THICKNESS,
-              parameters.GARAGE_DEPTH
-            ]}
-          />
+      <Floor color={furnitureColour} />
+
+      <Wall color={furnitureColour} />
+
+      {true ? (
+        <DebugBox
+          position={new Vector3(1, parameters.WALL_THICKNESS + 5, 1)}
+          size={[2, 2, 2]}
+        />
+      ) : (
+        <mesh
+          castShadow
+          position={new Vector3(0, parameters.WALL_THICKNESS + 1, 0)}
+        >
+          <boxGeometry args={[2, 2, 2]} />
           <meshStandardMaterial color={furnitureColour} />
         </mesh>
-      </PivotControlsWithLock>
-
-      {/* <mesh castShadow position={new Vector3(0, 0, 0)}>
-        <boxGeometry
-          args={[
-            parameters.GARAGE_WIDTH,
-            parameters.WALL_THICKNESS,
-            parameters.GARAGE_DEPTH
-          ]}
-        />
-        <meshStandardMaterial color={furnitureColour} />
-      </mesh> */}
+      )}
     </>
   )
 }
@@ -144,7 +174,7 @@ const Grid = ({ number = 23, lineWidth = 0.026, height = 0.5 }) => (
   // Renders a grid and crosses as instances
   <Instances position={[0, 0, 0]}>
     <planeGeometry args={[lineWidth, height]} />
-    <meshBasicMaterial color="#999" />
+    <meshStandardMaterial color="#999" />
     {Array.from({ length: number }, (_, y) =>
       Array.from({ length: number }, (_, x) => (
         <group
@@ -188,17 +218,39 @@ const ExampleOne = () => {
               border: 'var(--📏-art-stroke-1) solid var(--🎨-border)',
               borderRadius: 'var(--📏-border-radius-2)'
             }}
+            camera={{ position: [5, 1, 10] }}
           >
-            <Grid />
-
-            <GarageScene
-              wallColour={customProperties?.['--🎨-background'] ?? 'white'}
-              floorColour={customProperties?.['--🎨-background'] ?? 'white'}
-              furnitureColour={customProperties?.['--🎨-art-accent'] ?? 'white'}
+            <color
+              attach="background"
+              args={[customProperties?.['--🎨-background'] ?? 'white']}
             />
-
-            <OrbitControls enabled={!orbitLock} />
-
+            <ambientLight intensity={0.1} />
+            <hemisphereLight
+              intensity={0.125}
+              color="#ffffff"
+              groundColor={customProperties?.['--🎨-background'] ?? 'white'}
+            />
+            <spotLight
+              castShadow
+              color="white"
+              intensity={2}
+              position={[2, 50, 15]}
+              angle={0.25}
+              penumbra={1}
+              shadow-mapSize={[128, 128]}
+              shadow-bias={0.00005}
+            />
+            <Grid />
+            <Bounds fit clip observe damping={6} margin={1}>
+              <GarageScene
+                wallColour={customProperties?.['--🎨-background'] ?? 'white'}
+                floorColour={customProperties?.['--🎨-background'] ?? 'white'}
+                furnitureColour={
+                  customProperties?.['--🎨-art-accent'] ?? 'white'
+                }
+              />
+            </Bounds>
+            <OrbitControls enabled={!orbitLock} makeDefault />
             <GizmoHelper alignment="bottom-left" margin={[80, 80]}>
               <GizmoViewport
                 axisColors={['red', 'green', 'blue']}
@@ -209,6 +261,49 @@ const ExampleOne = () => {
         </div>
       </div>
     </>
+  )
+}
+
+function Wall({ color }: { color: ColorRepresentation }) {
+  return (
+    <mesh
+      castShadow
+      position={
+        new Vector3(
+          -((parameters.GARAGE_WIDTH - parameters.WALL_THICKNESS) / 2),
+          // parameters.WALL_THICKNESS,
+          parameters.GARAGE_HEIGHT / 2 + parameters.WALL_THICKNESS,
+          0
+        )
+      }
+    >
+      <boxGeometry
+        args={[
+          parameters.WALL_THICKNESS,
+          parameters.GARAGE_HEIGHT,
+          parameters.GARAGE_DEPTH
+        ]}
+      />
+      <meshStandardMaterial color={color} />
+    </mesh>
+  )
+}
+
+function Floor({ color }: { color: ColorRepresentation }) {
+  return (
+    <mesh
+      castShadow
+      position={new Vector3(0, parameters.WALL_THICKNESS / 2, 0)}
+    >
+      <boxGeometry
+        args={[
+          parameters.GARAGE_WIDTH,
+          parameters.WALL_THICKNESS,
+          parameters.GARAGE_DEPTH
+        ]}
+      />
+      <meshStandardMaterial color={color} />
+    </mesh>
   )
 }
 
