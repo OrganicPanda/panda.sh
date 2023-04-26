@@ -8,6 +8,7 @@ import '../src/styles/pandastyle/pandastyle-typography.css'
 import '../src/styles/pandastyle/pandastyle-forms.css'
 import '../src/styles/pandastyle/pandastyle-cards.css'
 import '../src/styles/pandastyle/pandastyle-decorations.css'
+import '../src/styles/pandastyle/pandastyle-theme-syntax-highlight.css'
 import type { AppProps } from 'next/app'
 
 export default function App({ Component, pageProps }: AppProps) {

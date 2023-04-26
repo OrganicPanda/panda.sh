@@ -1,4 +1,222 @@
-const happyHuesTheme4 = {
+import { writeFile, readFile } from 'fs/promises'
+import { createRequire } from 'node:module'
+import path from 'path'
+import prettier from 'prettier'
+
+interface HappyHuesTheme {
+  section1: {
+    elements: {
+      background: string
+      headline: string
+      paragraph: string
+      button: string
+      buttonText: string
+    }
+    illustrations: {
+      stroke: string
+      main: string
+      highlight: string
+      secondary: string
+      tertiary: string
+    }
+  }
+
+  section2: {
+    elements: {
+      background: string
+      headline: string
+      subHeadline: string
+      cardBackground: string
+      cardHeading: string
+      cardParagraph: string
+    }
+    icons: {
+      stroke: string
+      main: string
+      highlight: string
+      secondary: string
+      tertiary: string
+    }
+  }
+
+  section3: {
+    elements: {
+      background: string
+      headline: string
+      paragraph: string
+      cardBackground: string
+      cardHeadline: string
+      cardParagraph: string
+      cardTagBackground: string
+      cardTagText: string
+      cardHighlight: string
+    }
+  }
+
+  section4: {
+    elements: {
+      background: string
+      headline: string
+      paragraph: string
+      link: string
+      cardBackground: string
+      cardHeadline: string
+      cardParagraph: string
+    }
+    newsletter: {
+      background: string
+      formInput: string
+      labelAndPlaceholder: string
+      formButton: string
+      formButtonText: string
+    }
+  }
+
+  section5: {
+    elements: {
+      background: string
+      headline: string
+      paragraph: string
+      links: string
+    }
+  }
+}
+
+interface Section1 extends Record<string, string> {
+  '--🎨-background': string
+  '--🎨-heading': string
+  '--🎨-subheading': string
+  '--🎨-text': string
+  '--🎨-button-background': string
+  '--🎨-button-text': string
+
+  '--🎨-art-stroke': string
+  '--🎨-art-primary': string
+  '--🎨-art-accent': string
+  '--🎨-art-secondary': string
+  '--🎨-art-tertiary ': string
+}
+
+interface Section2 extends Record<string, string> {
+  '--🎨-background': string
+  '--🎨-heading': string
+  '--🎨-subheading': string
+  '--🎨-text': string
+  '--🎨-card-background': string
+  '--🎨-card-heading': string
+  '--🎨-card-text': string
+
+  '--🎨-art-stroke': string
+  '--🎨-art-primary': string
+  '--🎨-art-accent': string
+  '--🎨-art-secondary': string
+  '--🎨-art-tertiary ': string
+}
+
+interface Section3 extends Record<string, string> {
+  '--🎨-background': string
+  '--🎨-heading': string
+  '--🎨-text': string
+  '--🎨-card-background': string
+  '--🎨-card-heading': string
+  '--🎨-card-text': string
+  '--🎨-tag-background': string
+  '--🎨-tag-text': string
+  '--🎨-card-accent': string
+}
+
+interface Section4 extends Record<string, string> {
+  '--🎨-background': string
+  '--🎨-heading': string
+  '--🎨-text': string
+  '--🎨-link': string
+  '--🎨-card-background': string
+  '--🎨-card-heading': string
+  '--🎨-card-text': string
+
+  '--🎨-form-input-background': string
+  '--🎨-form-input-text': string
+  '--🎨-form-button-background': string
+  '--🎨-form-button-text': string
+}
+
+interface Section5 extends Record<string, string> {
+  '--🎨-background': string
+  '--🎨-heading': string
+  '--🎨-text': string
+  '--🎨-link': string
+}
+
+// Stuff not explicitly covered by happyhues
+interface NotCovered extends Record<string, string> {
+  '--🎨-border': string
+  '--🎨-code-background': string
+  '--🎨-code-color': string
+}
+
+interface Sizing {
+  base: {
+    '--📏-spacing-1': string
+    '--📏-spacing-2': string
+    '--📏-spacing-3': string
+    '--📏-spacing-4': string
+    '--📏-spacing-5': string
+    '--📏-spacing-6': string
+    '--📏-spacing-7': string
+    '--📏-spacing-8': string
+    '--📏-container-padding': string
+    '--📏-text-container-padding': string
+    '--📏-page-max-width': string
+    '--📏-art-stroke-1': string
+    '--📏-art-stroke-2': string
+    '--📏-art-stroke-3': string
+    '--📏-border-radius-1': string
+    '--📏-border-radius-2': string
+    '--📏-border-radius-3': string
+    '--📏-font-size-1': string
+    '--📏-font-size-2': string
+    '--📏-font-size-3': string
+    '--📏-line-height-1': string
+    '--📏-line-height-2': string
+    '--📏-line-height-3': string
+    '--📏-line-height-4': string
+  }
+  size1: {
+    '--📏-spacing-1': string
+    '--📏-spacing-2': string
+    '--📏-spacing-3': string
+    '--📏-spacing-4': string
+    '--📏-spacing-5': string
+    '--📏-spacing-6': string
+    '--📏-spacing-7': string
+    '--📏-spacing-8': string
+    '--📏-container-padding': string
+    '--📏-text-container-padding': string
+  }
+  size2: {
+    '--📏-spacing-1': string
+    '--📏-spacing-2': string
+    '--📏-spacing-3': string
+    '--📏-spacing-4': string
+    '--📏-spacing-5': string
+    '--📏-spacing-6': string
+    '--📏-spacing-7': string
+    '--📏-spacing-8': string
+    '--📏-container-padding': string
+    '--📏-text-container-padding': string
+  }
+}
+
+interface StandardTheme {
+  palettes: {
+    base: Section4 & Section5 & Section3 & Section1 & NotCovered
+    palette1: Section5 & Section3 & Section1
+    palette2: Section4 & Section2
+  }
+  sizing: Sizing
+}
+
+const happyHuesTheme4: HappyHuesTheme = {
   // dark bg
   section1: {
     elements: {
@@ -6,15 +224,15 @@ const happyHuesTheme4 = {
       headline: '#fffffe', // heading
       paragraph: '#94a1b2', // text
       button: '#7f5af0', // button-background
-      buttonText: '#fffffe', // button-text
+      buttonText: '#fffffe' // button-text
     },
     illustrations: {
       stroke: '#010101', // art-stroke
       main: '#fffffe', // art-primary
       highlight: '#7f5af0', // art-accent
       secondary: '#72757e', // art-secondary
-      tertiary: '#2cb67d', // art-tertiary
-    },
+      tertiary: '#2cb67d' // art-tertiary
+    }
   },
 
   // light bg, dark bg card
@@ -25,15 +243,15 @@ const happyHuesTheme4 = {
       subHeadline: '#94a1b2', // subheading & text
       cardBackground: '#16161a', // card-background
       cardHeading: '#fffffe', // card-heading
-      cardParagraph: '#94a1b2', // card-text
+      cardParagraph: '#94a1b2' // card-text
     },
     icons: {
       stroke: '#010101', // art-stroke
       main: '#fffffe', // art-primary
       highlight: '#7f5af0', // art-accent
       secondary: '#72757e', // art-secondary
-      tertiary: '#2cb67d', // art-tertiary
-    },
+      tertiary: '#2cb67d' // art-tertiary
+    }
   },
 
   // dark bg, light bg card
@@ -47,8 +265,8 @@ const happyHuesTheme4 = {
       cardParagraph: '#94a1b2', // card-text
       cardTagBackground: '#7f5af0', // tag-background
       cardTagText: '#fffffe', // tag-text
-      cardHighlight: '#fffffe', // card-accent
-    },
+      cardHighlight: '#fffffe' // card-accent
+    }
   },
 
   // light bg, dark bg card
@@ -60,15 +278,15 @@ const happyHuesTheme4 = {
       link: '#7f5af0', // link
       cardBackground: '#16161a', // card-background
       cardHeadline: '#fffffe', // card-heading
-      cardParagraph: '#94a1b2', // card-text
+      cardParagraph: '#94a1b2' // card-text
     },
     newsletter: {
       background: '#fffffe', // unused??
       formInput: '#16161a', // form-input-background
       labelAndPlaceholder: '#fffffe', // form-input-text
       formButton: '#7f5af0', // form-button-background
-      formButtonText: '#fffffe', // form-button-text
-    },
+      formButtonText: '#fffffe' // form-button-text
+    }
   },
 
   // dark bg
@@ -77,12 +295,12 @@ const happyHuesTheme4 = {
       background: '#16161a', // background
       headline: '#fffffe', // heading
       paragraph: '#94a1b2', // text
-      links: '#7f5af0', // link
-    },
-  },
+      links: '#7f5af0' // link
+    }
+  }
 }
 
-const happyHuesTheme14 = {
+const happyHuesTheme14: HappyHuesTheme = {
   // light bg
   section1: {
     elements: {
@@ -90,15 +308,15 @@ const happyHuesTheme14 = {
       headline: '#272343',
       paragraph: '#2d334a',
       button: '#ffd803',
-      buttonText: '#272343',
+      buttonText: '#272343'
     },
     illustrations: {
       stroke: '#272343',
       main: '#fffffe',
       highlight: '#ffd803',
       secondary: '#e3f6f5',
-      tertiary: '#bae8e8',
-    },
+      tertiary: '#bae8e8'
+    }
   },
 
   // light bg, dark bg card
@@ -112,8 +330,8 @@ const happyHuesTheme14 = {
       cardParagraph: '#fffffe',
       cardTagBackground: '#bae8e8',
       cardTagText: '#272343',
-      cardHighlight: '#bae8e8',
-    },
+      cardHighlight: '#bae8e8'
+    }
   },
 
   // light bg
@@ -122,8 +340,8 @@ const happyHuesTheme14 = {
       background: '#fffffe',
       headline: '#272343',
       paragraph: '#2d334a',
-      links: '#ffd803',
-    },
+      links: '#ffd803'
+    }
   },
 
   // dark bg
@@ -134,15 +352,15 @@ const happyHuesTheme14 = {
       subHeadline: '#2d334a',
       cardBackground: '#fffffe',
       cardHeading: '#272343',
-      cardParagraph: '#2d334a',
+      cardParagraph: '#2d334a'
     },
     icons: {
       stroke: '#272343',
       main: '#fffffe',
       highlight: '#ffd803',
       secondary: '#e3f6f5',
-      tertiary: '#bae8e8',
-    },
+      tertiary: '#bae8e8'
+    }
   },
 
   // dark bg, light bg card
@@ -154,16 +372,16 @@ const happyHuesTheme14 = {
       link: '#272343',
       cardBackground: '#fffffe',
       cardHeadline: '#272343',
-      cardParagraph: '#2d334a',
+      cardParagraph: '#2d334a'
     },
     newsletter: {
       background: '#bae8e8',
       formInput: '#fffffe',
       labelAndPlaceholder: '#272343',
       formButton: '#272343',
-      formButtonText: '#fffffe',
-    },
-  },
+      formButtonText: '#fffffe'
+    }
+  }
 }
 
 // Content defines height
@@ -194,7 +412,7 @@ const defaultSizing = {
     '--📏-line-height-1': '1',
     '--📏-line-height-2': '1.3',
     '--📏-line-height-3': '1.6',
-    '--📏-line-height-4': '1.8',
+    '--📏-line-height-4': '1.8'
   },
   size1: {
     '--📏-spacing-1': '0.1em',
@@ -206,7 +424,7 @@ const defaultSizing = {
     '--📏-spacing-7': '1em',
     '--📏-spacing-8': '1.5em',
     '--📏-container-padding': 'var(--📏-spacing-6)',
-    '--📏-text-container-padding': 'var(--📏-container-padding)',
+    '--📏-text-container-padding': 'var(--📏-container-padding)'
   },
   size2: {
     '--📏-spacing-1': '0.25em',
@@ -218,11 +436,13 @@ const defaultSizing = {
     '--📏-spacing-7': '3em',
     '--📏-spacing-8': '4em',
     '--📏-container-padding': 'var(--📏-spacing-6)',
-    '--📏-text-container-padding': 'var(--📏-container-padding)',
-  },
+    '--📏-text-container-padding': 'var(--📏-container-padding)'
+  }
 }
 
-const happyHuesToStandardTheme = (happyHuesTheme) => {
+const happyHuesToStandardTheme = (
+  happyHuesTheme: HappyHuesTheme
+): StandardTheme => {
   // Mix 1, 3 & 5
   // - 1 has elements, illustrations/icons
   // - 3 has elements, card
@@ -244,7 +464,7 @@ const happyHuesToStandardTheme = (happyHuesTheme) => {
     '--🎨-art-primary': happyHuesTheme.section1.illustrations.main,
     '--🎨-art-accent': happyHuesTheme.section1.illustrations.highlight,
     '--🎨-art-secondary': happyHuesTheme.section1.illustrations.secondary,
-    '--🎨-art-tertiary ': happyHuesTheme.section1.illustrations.tertiary,
+    '--🎨-art-tertiary ': happyHuesTheme.section1.illustrations.tertiary
   }
 
   const section2 = {
@@ -260,7 +480,7 @@ const happyHuesToStandardTheme = (happyHuesTheme) => {
     '--🎨-art-primary': happyHuesTheme.section2.icons.main,
     '--🎨-art-accent': happyHuesTheme.section2.icons.highlight,
     '--🎨-art-secondary': happyHuesTheme.section2.icons.secondary,
-    '--🎨-art-tertiary ': happyHuesTheme.section2.icons.tertiary,
+    '--🎨-art-tertiary ': happyHuesTheme.section2.icons.tertiary
   }
 
   const section3 = {
@@ -272,7 +492,7 @@ const happyHuesToStandardTheme = (happyHuesTheme) => {
     '--🎨-card-text': happyHuesTheme.section3.elements.cardParagraph,
     '--🎨-tag-background': happyHuesTheme.section3.elements.cardTagBackground,
     '--🎨-tag-text': happyHuesTheme.section3.elements.cardTagText,
-    '--🎨-card-accent': happyHuesTheme.section3.elements.cardHighlight,
+    '--🎨-card-accent': happyHuesTheme.section3.elements.cardHighlight
   }
 
   const section4Form = {
@@ -281,7 +501,7 @@ const happyHuesToStandardTheme = (happyHuesTheme) => {
       happyHuesTheme.section4.newsletter.labelAndPlaceholder,
     '--🎨-form-button-background':
       happyHuesTheme.section4.newsletter.formButton,
-    '--🎨-form-button-text': happyHuesTheme.section4.newsletter.formButtonText,
+    '--🎨-form-button-text': happyHuesTheme.section4.newsletter.formButtonText
   }
 
   const section4 = {
@@ -293,21 +513,21 @@ const happyHuesToStandardTheme = (happyHuesTheme) => {
     '--🎨-card-heading': happyHuesTheme.section4.elements.cardHeadline,
     '--🎨-card-text': happyHuesTheme.section4.elements.cardParagraph,
 
-    ...section4Form,
+    ...section4Form
   }
 
   const section5 = {
     '--🎨-background': happyHuesTheme.section5.elements.background,
     '--🎨-heading': happyHuesTheme.section5.elements.headline,
     '--🎨-text': happyHuesTheme.section5.elements.paragraph,
-    '--🎨-link': happyHuesTheme.section5.elements.links,
+    '--🎨-link': happyHuesTheme.section5.elements.links
   }
 
   // Stuff not explicitly covered by happyhues
   const notCovered = {
     '--🎨-border': happyHuesTheme.section1.elements.headline,
     '--🎨-code-background': section2['--🎨-background'],
-    '--🎨-code-color': section2['--🎨-text'],
+    '--🎨-code-color': section2['--🎨-text']
   }
 
   return {
@@ -317,29 +537,33 @@ const happyHuesToStandardTheme = (happyHuesTheme) => {
         ...section5,
         ...section3,
         ...section1,
-        ...notCovered,
+        ...notCovered
       },
       palette1: {
         ...section5,
         ...section3,
-        ...section1,
+        ...section1
       },
       palette2: {
         ...section4,
-        ...section2,
-      },
+        ...section2
+      }
     },
-    sizing: defaultSizing,
+    sizing: defaultSizing
   }
 }
 
-const stringifyCSS = (css) => {
+const stringifyCSS = (css: Record<string, string>) => {
   return Object.entries(css)
     .map(([key, value]) => `${key}: ${value};`)
     .join('\n')
 }
 
-const standardThemeToCSS = (name, standardThemeLight, standardThemeDark) => {
+const standardThemeToCSS = (
+  name: string,
+  standardThemeLight: StandardTheme,
+  standardThemeDark: StandardTheme
+) => {
   return `
   .🐼-theme-${name}-palettes-base {
     ${stringifyCSS(standardThemeLight.palettes.base)}
@@ -403,10 +627,65 @@ const standardThemeToCSS = (name, standardThemeLight, standardThemeDark) => {
   `
 }
 
-console.log(
-  standardThemeToCSS(
-    'happyhues',
-    happyHuesToStandardTheme(happyHuesTheme14),
-    happyHuesToStandardTheme(happyHuesTheme4)
-  )
+const theme = standardThemeToCSS(
+  'happyhues',
+  happyHuesToStandardTheme(happyHuesTheme14),
+  happyHuesToStandardTheme(happyHuesTheme4)
+)
+
+const prettyTheme = prettier.format(theme, { parser: 'css' })
+
+await writeFile(
+  path.join(
+    process.cwd(),
+    'src',
+    'styles',
+    'pandastyle',
+    'pandastyle-theme-happyhues.css'
+  ),
+  prettyTheme
+)
+
+const require = createRequire(import.meta.url)
+const highlightJsRootDir = path.dirname(
+  require.resolve('highlight.js/package.json')
+)
+
+const darkThemeCss = await readFile(
+  path.join(highlightJsRootDir, 'styles', 'kimbie-dark.css'),
+  {
+    encoding: 'utf-8'
+  }
+)
+
+const lightThemeCss = await readFile(
+  path.join(highlightJsRootDir, 'styles', 'kimbie-light.css'),
+  {
+    encoding: 'utf-8'
+  }
+)
+
+const syntaxHighlightCss = `
+${lightThemeCss}
+
+@media (prefers-color-scheme: dark) {
+  ${darkThemeCss}
+}`
+  .replace(/(padding|margin|overflow-x|display):[^;]+;/gim, '')
+  .replace(/pre code.hljs/gim, '.🐼-code > code')
+  .replace(/(.hljs-)/gim, '.🐼-code .hljs-')
+
+const syntaxHighlightCssPretty = prettier.format(syntaxHighlightCss, {
+  parser: 'css'
+})
+
+await writeFile(
+  path.join(
+    process.cwd(),
+    'src',
+    'styles',
+    'pandastyle',
+    'pandastyle-theme-syntax-highlight.css'
+  ),
+  syntaxHighlightCssPretty
 )

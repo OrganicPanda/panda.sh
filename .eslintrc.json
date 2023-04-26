@@ -48,7 +48,10 @@
           "angle",
           "penumbra",
           "shadow-mapSize",
-          "shadow-bias"
+          "shadow-bias",
+          "onAfterRender",
+          "side",
+          "rotation"
         ]
       }
     ]

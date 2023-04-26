@@ -1,0 +1,17 @@
+.canvas-wrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.canvas-wrapper::before {
+  float: left;
+  padding-top: calc((100 / 16) * 9%);
+  content: '';
+}
+
+.canvas-wrapper::after {
+  display: block;
+  content: '';
+  clear: both;
+}

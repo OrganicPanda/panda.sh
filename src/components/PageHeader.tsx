@@ -12,13 +12,13 @@ type PageHeaderWrapperProps = {
 const PageHeaderWrapper = ({
   isSticky = false,
   className,
-  children,
+  children
 }: PageHeaderWrapperProps) => {
-  const stickyClass = {
-    [styles['sticky-header']]: isSticky,
+  const classes = {
+    [styles['sticky-wrapper']]: isSticky
   }
 
-  return <div className={classNames(stickyClass, className)}>{children}</div>
+  return <div className={classNames(classes, className)}>{children}</div>
 }
 
 type PageHeaderProps = {
@@ -30,13 +30,24 @@ type PageHeaderProps = {
 export const PageHeader = ({
   isSticky = false,
   isFullWidth = false,
-  className,
+  className
 }: PageHeaderProps) => {
   return (
     <PageHeaderWrapper isSticky={isSticky} className={className}>
-      <Header
-        className={isFullWidth ? styles.header : styles['inset-header']}
-      />
+      {isFullWidth ? (
+        <div className="🐼-section 🐼-section-clear">
+          <Header />
+        </div>
+      ) : null}
+
+      {!isFullWidth ? (
+        <div className="🐼-section 🐼-section-clear">
+          <div className="🐼-section-page">
+            <Header />
+          </div>
+        </div>
+      ) : null}
+
       <hr className={styles.hr} />
     </PageHeaderWrapper>
   )

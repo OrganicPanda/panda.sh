@@ -4,6 +4,7 @@ type Styles = {
   '--🎨-background': string | null
   '--🎨-heading': string | null
   '--🎨-art-accent': string | null
+  '--🎨-art-primary': string | null
 }
 
 type CustomProperties<T extends keyof Styles> = Pick<Styles, T>

@@ -1,10 +1,50 @@
+.🐼-title {
+  margin: 0;
+  font-size: var(--📏-font-size-2);
+  font-weight: 200;
+  line-height: 1;
+}
+
+.🐼-paragraph {
+}
+
 .🐼-heading {
   margin: 0;
   color: var(--🎨-heading);
 }
 
 .🐼-heading-1 {
-  font-size: var(--📏-font-size-3);
+  margin: 0;
+  /* font-size: var(--📏-font-size-3);
+  font-weight: 100; */
+}
+
+.🐼-heading-2 {
+  margin: 0;
+  /* font-size: var(--📏-font-size-3);
+  font-weight: 100; */
+}
+
+.🐼-heading-3 {
+  margin: 0;
+  /* font-size: var(--📏-font-size-3);
+  font-weight: 100; */
+}
+
+.🐼-heading-1 + .🐼-heading-2 {
+  margin-top: var(--📏-spacing-3);
+}
+
+.🐼-heading-2 + .🐼-heading-3 {
+  margin-top: var(--📏-spacing-3);
+}
+
+.🐼-heading + .🐼-text {
+  margin-top: var(--📏-spacing-2);
+}
+
+.🐼-text + .🐼-text {
+  margin-top: var(--📏-spacing-2);
 }
 
 .🐼-subheading {
@@ -15,4 +55,69 @@
 .🐼-text {
   margin: 0;
   color: var(--🎨-text);
+}
+
+/* Tactic from css-tricks:
+ * https://codepen.io/team/css-tricks/pen/OJOXWPp 
+ */
+.🐼-link {
+  color: var(--🎨-text);
+  font-weight: 500;
+
+  background-image: linear-gradient(
+    to top,
+    transparent,
+    transparent 50%,
+    var(--🎨-art-accent) 50%
+  );
+  background-size: 100% 200%;
+  background-position: 0 calc(-100% - 0.3em);
+  transition: all 0.3s ease-in-out;
+}
+
+.🐼-link:hover {
+  background-position: 0 0;
+}
+
+.🐼-code {
+  --expand-total: 0.3em;
+  --initial-inset: 0.2em;
+
+  font-size: 0.8em;
+  color: var(--🎨-code-color);
+  padding-left: var(--📏-spacing-2);
+  padding-right: var(--📏-spacing-2);
+
+  /* A background-color can't be positioned using background-position so workaround that with a generated image */
+  background-image: linear-gradient(
+    to top,
+    var(--🎨-code-background),
+    var(--🎨-code-background) 50%,
+    var(--🎨-code-background) 50%
+  );
+
+  /* Position and size are relative to the origin */
+  background-origin: border-box;
+  background-position: var(--initial-inset) var(--initial-inset);
+  background-size: calc(100% - (var(--initial-inset) * 2))
+    calc(100% - (var(--initial-inset) * 2));
+  background-repeat: no-repeat;
+  transition: all 0.3s ease-in-out;
+  border: var(--expand-total) solid transparent;
+}
+
+.🐼-code:hover {
+  background-position: 0 0;
+  background-size: 100% 100%;
+}
+
+.🐼-code-block {
+  --expand-total: 1.2em;
+  --initial-inset: 0.2em;
+  padding: 0;
+  margin-left: calc(-1em);
+  margin-right: calc(-1em);
+  font-family: monospace;
+  white-space: pre;
+  overflow: auto;
 }
