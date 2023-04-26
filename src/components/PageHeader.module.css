@@ -6,14 +6,6 @@
   backdrop-filter: blur(5px);
 }
 
-.header {
-  padding-bottom: var(--📏-container-padding);
-}
-
-.inset-header {
-  padding: var(--📏-container-padding);
-}
-
 .hr {
   border: 0;
   height: 0;

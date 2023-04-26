@@ -1,8 +1,8 @@
 .h1 {
   /* color: ${({ theme }) => theme.palette.headline}; */
-  font-size: 3rem;
+  /* font-size: 3rem;
   font-weight: 200;
-  margin: -0.2em 0 0 0;
+  margin: -0.2em 0 0 0; */
 }
 
 .p {
@@ -10,5 +10,9 @@
 }
 
 .a {
-  /* color: ${({ theme }) => theme.palette.link}; */
+  /* font-weight: 500; */
+}
+
+.a:hover {
+  /* text-decoration: underline; */
 }

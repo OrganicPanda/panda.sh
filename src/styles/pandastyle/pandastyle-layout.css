@@ -3,13 +3,22 @@
   background-color: var(--🎨-background);
 }
 
+.🐼-section-clear {
+  background-color: none;
+}
+
 .🐼-section-item + .🐼-section-item {
-  margin-top: var(--📏-spacing-1);
+  margin-top: var(--📏-spacing-6);
 }
 
 .🐼-section-hero {
-  padding-top: calc(var(--📏-container-padding) * 5);
-  padding-bottom: calc(var(--📏-container-padding) * 5);
+  padding-top: calc(var(--📏-container-padding) * 4);
+  padding-bottom: calc(var(--📏-container-padding) * 4);
+}
+
+.🐼-section-text {
+  padding-top: calc(var(--📏-container-padding) * 2);
+  padding-bottom: calc(var(--📏-container-padding) * 2);
 }
 
 .🐼-section-page {

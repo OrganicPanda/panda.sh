@@ -22,6 +22,8 @@
   --🎨-art-secondary: #e3f6f5;
   --🎨-art-tertiary: #bae8e8;
   --🎨-border: #272343;
+  --🎨-code-background: #e3f6f5;
+  --🎨-code-color: #2d334a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -49,6 +51,8 @@
     --🎨-art-secondary: #72757e;
     --🎨-art-tertiary: #2cb67d;
     --🎨-border: #fffffe;
+    --🎨-code-background: #242629;
+    --🎨-code-color: #94a1b2;
   }
 }
 
@@ -139,12 +143,17 @@
 }
 
 .🐼-theme-happyhues-sizing-base {
-  --📏-spacing-1: 0.5em;
-  --📏-spacing-2: 1em;
-  --📏-spacing-3: 1.5em;
-  --📏-container-padding: var(--📏-spacing-2);
+  --📏-spacing-1: 0.1em;
+  --📏-spacing-2: 0.2em;
+  --📏-spacing-3: 0.4em;
+  --📏-spacing-4: 0.6em;
+  --📏-spacing-5: 0.8em;
+  --📏-spacing-6: 1em;
+  --📏-spacing-7: 1.5em;
+  --📏-spacing-8: 2em;
+  --📏-container-padding: var(--📏-spacing-6);
   --📏-text-container-padding: var(--📏-container-padding);
-  --📏-page-max-width: 70em;
+  --📏-page-max-width: 50em;
   --📏-art-stroke-1: 0.1em;
   --📏-art-stroke-2: 0.5em;
   --📏-art-stroke-3: 0.75em;
@@ -154,16 +163,25 @@
   --📏-font-size-1: 1em;
   --📏-font-size-2: 1.5em;
   --📏-font-size-3: 2.5em;
+  --📏-line-height-1: 1;
+  --📏-line-height-2: 1.3;
+  --📏-line-height-3: 1.6;
+  --📏-line-height-4: 1.8;
 }
 
 @media (prefers-color-scheme: dark) {
   .🐼-theme-happyhues-sizing-base {
-    --📏-spacing-1: 0.5em;
-    --📏-spacing-2: 1em;
-    --📏-spacing-3: 1.5em;
-    --📏-container-padding: var(--📏-spacing-2);
+    --📏-spacing-1: 0.1em;
+    --📏-spacing-2: 0.2em;
+    --📏-spacing-3: 0.4em;
+    --📏-spacing-4: 0.6em;
+    --📏-spacing-5: 0.8em;
+    --📏-spacing-6: 1em;
+    --📏-spacing-7: 1.5em;
+    --📏-spacing-8: 2em;
+    --📏-container-padding: var(--📏-spacing-6);
     --📏-text-container-padding: var(--📏-container-padding);
-    --📏-page-max-width: 70em;
+    --📏-page-max-width: 50em;
     --📏-art-stroke-1: 0.1em;
     --📏-art-stroke-2: 0.5em;
     --📏-art-stroke-3: 0.75em;
@@ -173,41 +191,65 @@
     --📏-font-size-1: 1em;
     --📏-font-size-2: 1.5em;
     --📏-font-size-3: 2.5em;
+    --📏-line-height-1: 1;
+    --📏-line-height-2: 1.3;
+    --📏-line-height-3: 1.6;
+    --📏-line-height-4: 1.8;
   }
 }
 
 .🐼-theme-happyhues-sizing-size1 {
-  --📏-spacing-1: 0.25em;
-  --📏-spacing-2: 0.5em;
-  --📏-spacing-3: 0.75em;
-  --📏-container-padding: var(--📏-spacing-2);
+  --📏-spacing-1: 0.1em;
+  --📏-spacing-2: 0.2em;
+  --📏-spacing-3: 0.3em;
+  --📏-spacing-4: 0.4em;
+  --📏-spacing-5: 0.5em;
+  --📏-spacing-6: 0.75em;
+  --📏-spacing-7: 1em;
+  --📏-spacing-8: 1.5em;
+  --📏-container-padding: var(--📏-spacing-6);
   --📏-text-container-padding: var(--📏-container-padding);
 }
 
 @media (prefers-color-scheme: dark) {
   .🐼-theme-happyhues-sizing-size1 {
-    --📏-spacing-1: 0.25em;
-    --📏-spacing-2: 0.5em;
-    --📏-spacing-3: 0.75em;
-    --📏-container-padding: var(--📏-spacing-2);
+    --📏-spacing-1: 0.1em;
+    --📏-spacing-2: 0.2em;
+    --📏-spacing-3: 0.3em;
+    --📏-spacing-4: 0.4em;
+    --📏-spacing-5: 0.5em;
+    --📏-spacing-6: 0.75em;
+    --📏-spacing-7: 1em;
+    --📏-spacing-8: 1.5em;
+    --📏-container-padding: var(--📏-spacing-6);
     --📏-text-container-padding: var(--📏-container-padding);
   }
 }
 
 .🐼-theme-happyhues-sizing-size2 {
-  --📏-spacing-1: 1em;
-  --📏-spacing-2: 1.5em;
-  --📏-spacing-3: 2em;
-  --📏-container-padding: var(--📏-spacing-2);
+  --📏-spacing-1: 0.25em;
+  --📏-spacing-2: 0.5em;
+  --📏-spacing-3: 0.75em;
+  --📏-spacing-4: 1em;
+  --📏-spacing-5: 1.5em;
+  --📏-spacing-6: 2em;
+  --📏-spacing-7: 3em;
+  --📏-spacing-8: 4em;
+  --📏-container-padding: var(--📏-spacing-6);
   --📏-text-container-padding: var(--📏-container-padding);
 }
 
 @media (prefers-color-scheme: dark) {
   .🐼-theme-happyhues-sizing-size2 {
-    --📏-spacing-1: 1em;
-    --📏-spacing-2: 1.5em;
-    --📏-spacing-3: 2em;
-    --📏-container-padding: var(--📏-spacing-2);
+    --📏-spacing-1: 0.25em;
+    --📏-spacing-2: 0.5em;
+    --📏-spacing-3: 0.75em;
+    --📏-spacing-4: 1em;
+    --📏-spacing-5: 1.5em;
+    --📏-spacing-6: 2em;
+    --📏-spacing-7: 3em;
+    --📏-spacing-8: 4em;
+    --📏-container-padding: var(--📏-spacing-6);
     --📏-text-container-padding: var(--📏-container-padding);
   }
 }

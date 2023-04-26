@@ -1,7 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
-import styles from './Header.module.css'
-import { H1, Link } from './Typography'
+import { HeaderLink, Title } from './Typography'
 
 type HeaderProps = {
   className?: string
@@ -10,11 +8,9 @@ type HeaderProps = {
 const Header = ({ className }: HeaderProps) => {
   return (
     <header className={className}>
-      <H1>
-        <Link href="/" className={classNames('🐼-text', styles.a)}>
-          panda.sh
-        </Link>
-      </H1>
+      <HeaderLink href="/">
+        <Title>panda.sh</Title>
+      </HeaderLink>
     </header>
   )
 }
