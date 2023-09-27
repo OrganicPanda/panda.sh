@@ -90,54 +90,6 @@ export const Code = ({
   )
 }
 
-type CodeBlockProps = React.HTMLProps<HTMLPreElement> & {
-  children: string
-  language?: string
-}
-
-export const CodeBlock = ({
-  className,
-  children,
-  language = 'typescript',
-  ...restProps
-}: CodeBlockProps) => {
-  if (typeof children !== 'string')
-    throw new Error(
-      `CodeBlock only supports a single child of type string. typeof children = ${typeof children}`
-    )
-
-  const [firstLine, ...otherLines] = children.trim().split('\n')
-
-  // Count the leading whitespace on each line, the first line is a special case
-  const leadingWhitespacePerLine: Array<number> = otherLines
-    // Make sure we only measure whitespace for lines that have whitespace and content
-    .filter((line) => line.match(/^[\s]+.+/))
-    .map((line) => {
-      return line.match(/^[\s]+/)?.[0].length ?? 0
-    })
-    .sort()
-
-  // Subtract the smallest amount of whitespace from each line, effectively de-indenting it
-  const smallestWhitespace = leadingWhitespacePerLine[0]
-  const truncatedOtherLines = otherLines.map((line) => {
-    return line.slice(smallestWhitespace)
-  })
-
-  // Glue it back together
-  const finalText = [firstLine, ...truncatedOtherLines].join('\n')
-  const highlighted = `<code>${
-    hljs.highlight(finalText, { language }).value
-  }</code>`
-
-  return (
-    <pre
-      {...restProps}
-      className={classNames('🐼-code 🐼-code-block', className)}
-      dangerouslySetInnerHTML={{ __html: highlighted }}
-    ></pre>
-  )
-}
-
 type AnchorProps = React.HTMLProps<HTMLAnchorElement> & {
   className?: string
   children: React.ReactNode

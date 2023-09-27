@@ -24,6 +24,14 @@
   --🎨-border: #272343;
   --🎨-code-background: #e3f6f5;
   --🎨-code-color: #2d334a;
+  --🎨-code-comment: #a0a1a7;
+  --🎨-code-keyword: #a626a4;
+  --🎨-code-name: #e45649;
+  --🎨-code-literal: #0184bb;
+  --🎨-code-string: #50a14f;
+  --🎨-code-variable: #986801;
+  --🎨-code-symbol: #4078f2;
+  --🎨-code-built-in: #c18401;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,6 +61,14 @@
     --🎨-border: #fffffe;
     --🎨-code-background: #242629;
     --🎨-code-color: #94a1b2;
+    --🎨-code-comment: #5c6370;
+    --🎨-code-keyword: #c678dd;
+    --🎨-code-name: #e06c75;
+    --🎨-code-literal: #56b6c2;
+    --🎨-code-string: #98c379;
+    --🎨-code-variable: #d19a66;
+    --🎨-code-symbol: #61aeee;
+    --🎨-code-built-in: #e6c07b;
   }
 }
 
