@@ -42,7 +42,7 @@ export const ExampleScene = ({
           border: 'var(--📏-art-stroke-1) solid var(--🎨-border)',
           borderRadius: 'var(--📏-border-radius-2)'
         }}
-        camera={{ position: [5, 1, 10] }}
+        camera={{ position: [0, 1, 3] }}
         {...canvasProps}
       >
         <color

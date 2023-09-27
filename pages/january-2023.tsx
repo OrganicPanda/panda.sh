@@ -11,19 +11,17 @@ import {
   withAxisAlignment
 } from '../src/components/3d/utils/withAxisAlignment'
 import { Anchor, Code } from '../src/components/Typography'
+import { CodeBlockAcorn3 } from '../src/components/CodeBlockAcorn3'
 
 const ExampleOne = () => {
   const { ref, customProperties } = useCustomProperties(['--🎨-art-accent'])
+  const color = customProperties?.['--🎨-art-accent'] || 'green'
 
   return (
     <div ref={ref as React.Ref<HTMLDivElement>}>
-      <ExampleScene
-        canvasProps={{
-          camera: { position: [0, 1, 3] }
-        }}
-      >
+      <ExampleScene>
         <DebugBox
-          color={customProperties?.['--🎨-art-accent'] || 'green'}
+          color={color}
           position={new Vector3(0, 0, 0)}
           size={[1, 1, 1]}
         />
@@ -79,6 +77,7 @@ export const Summary = () => {
 }
 
 export default function January2023() {
+  const yo = 'yo'
   return (
     <BasicLayout>
       <PageHeader />
@@ -122,6 +121,48 @@ export default function January2023() {
       <div className="🐼-theme-happyhues-palettes-palette2 🐼-section">
         <div className="🐼-section-item 🐼-section-page-highlight">
           <ExampleTwo />
+        </div>
+      </div>
+
+      <div className="🐼-section">
+        <div className="🐼-section-page 🐼-section-text">
+          <CodeBlockAcorn3>{`
+import * as React from "react";
+import { HelloComponent } from "./hello";
+import { NameEditComponent } from "./nameEdit";
+
+export const App = () => {
+  const [name, setName] = React.useState("defaultUserName");
+  const [editingName, setEditingName] = React.useState("defaultUserName");
+
+  const loadUsername = () => {
+    setTimeout(() => {
+      setName("name from async call");
+      setEditingName("name from async call");
+    }, 500);
+  };
+
+  React.useEffect(() => {
+    loadUsername();
+  }, []);
+
+  const setUsernameState = () => {
+    setName(editingName);
+  };
+
+  return (
+    <>
+      <HelloComponent userName={name} />
+      <NameEditComponent
+        initialUserName={\`hey\${yo}hey\`}
+        editingName={editingName}
+        onNameUpdated={setUsernameState}
+        onEditingNameUpdated={setEditingName}
+      />
+    </>
+  );
+};
+          `}</CodeBlockAcorn3>
         </div>
       </div>
     </BasicLayout>
