@@ -1,0 +1,271 @@
+.🐼-theme-happyhues-palettes-base {
+  --🎨-background: #fffffe;
+  --🎨-heading: #272343;
+  --🎨-text: #2d334a;
+  --🎨-link: #ffd803;
+  --🎨-card-background: #272343;
+  --🎨-card-heading: #fffffe;
+  --🎨-card-text: #fffffe;
+  --🎨-form-input-background: #fffffe;
+  --🎨-form-input-text: #272343;
+  --🎨-form-button-background: #272343;
+  --🎨-form-button-text: #fffffe;
+  --🎨-tag-background: #bae8e8;
+  --🎨-tag-text: #272343;
+  --🎨-card-accent: #bae8e8;
+  --🎨-subheading: #2d334a;
+  --🎨-button-background: #ffd803;
+  --🎨-button-text: #272343;
+  --🎨-art-stroke: #272343;
+  --🎨-art-primary: #fffffe;
+  --🎨-art-accent: #ffd803;
+  --🎨-art-secondary: #e3f6f5;
+  --🎨-art-tertiary: #bae8e8;
+  --🎨-border: #272343;
+  --🎨-code-background: #e3f6f5;
+  --🎨-code-color: #2d334a;
+  --🎨-code-comment: #a0a1a7;
+  --🎨-code-keyword: #a626a4;
+  --🎨-code-name: #e45649;
+  --🎨-code-literal: #0184bb;
+  --🎨-code-string: #50a14f;
+  --🎨-code-variable: #986801;
+  --🎨-code-symbol: #4078f2;
+  --🎨-code-built-in: #c18401;
+}
+
+@media (prefers-color-scheme: dark) {
+  .🐼-theme-happyhues-palettes-base {
+    --🎨-background: #16161a;
+    --🎨-heading: #fffffe;
+    --🎨-text: #94a1b2;
+    --🎨-link: #7f5af0;
+    --🎨-card-background: #242629;
+    --🎨-card-heading: #fffffe;
+    --🎨-card-text: #94a1b2;
+    --🎨-form-input-background: #16161a;
+    --🎨-form-input-text: #fffffe;
+    --🎨-form-button-background: #7f5af0;
+    --🎨-form-button-text: #fffffe;
+    --🎨-tag-background: #7f5af0;
+    --🎨-tag-text: #fffffe;
+    --🎨-card-accent: #fffffe;
+    --🎨-subheading: #94a1b2;
+    --🎨-button-background: #7f5af0;
+    --🎨-button-text: #fffffe;
+    --🎨-art-stroke: #010101;
+    --🎨-art-primary: #fffffe;
+    --🎨-art-accent: #7f5af0;
+    --🎨-art-secondary: #72757e;
+    --🎨-art-tertiary: #2cb67d;
+    --🎨-border: #fffffe;
+    --🎨-code-background: #242629;
+    --🎨-code-color: #94a1b2;
+    --🎨-code-comment: #5c6370;
+    --🎨-code-keyword: #c678dd;
+    --🎨-code-name: #e06c75;
+    --🎨-code-literal: #56b6c2;
+    --🎨-code-string: #98c379;
+    --🎨-code-variable: #d19a66;
+    --🎨-code-symbol: #61aeee;
+    --🎨-code-built-in: #e6c07b;
+  }
+}
+
+.🐼-theme-happyhues-palettes-palette1 {
+  --🎨-background: #fffffe;
+  --🎨-heading: #272343;
+  --🎨-text: #2d334a;
+  --🎨-link: #ffd803;
+  --🎨-card-background: #272343;
+  --🎨-card-heading: #fffffe;
+  --🎨-card-text: #fffffe;
+  --🎨-tag-background: #bae8e8;
+  --🎨-tag-text: #272343;
+  --🎨-card-accent: #bae8e8;
+  --🎨-subheading: #2d334a;
+  --🎨-button-background: #ffd803;
+  --🎨-button-text: #272343;
+  --🎨-art-stroke: #272343;
+  --🎨-art-primary: #fffffe;
+  --🎨-art-accent: #ffd803;
+  --🎨-art-secondary: #e3f6f5;
+  --🎨-art-tertiary: #bae8e8;
+}
+
+@media (prefers-color-scheme: dark) {
+  .🐼-theme-happyhues-palettes-palette1 {
+    --🎨-background: #16161a;
+    --🎨-heading: #fffffe;
+    --🎨-text: #94a1b2;
+    --🎨-link: #7f5af0;
+    --🎨-card-background: #242629;
+    --🎨-card-heading: #fffffe;
+    --🎨-card-text: #94a1b2;
+    --🎨-tag-background: #7f5af0;
+    --🎨-tag-text: #fffffe;
+    --🎨-card-accent: #fffffe;
+    --🎨-subheading: #94a1b2;
+    --🎨-button-background: #7f5af0;
+    --🎨-button-text: #fffffe;
+    --🎨-art-stroke: #010101;
+    --🎨-art-primary: #fffffe;
+    --🎨-art-accent: #7f5af0;
+    --🎨-art-secondary: #72757e;
+    --🎨-art-tertiary: #2cb67d;
+  }
+}
+
+.🐼-theme-happyhues-palettes-palette2 {
+  --🎨-background: #e3f6f5;
+  --🎨-heading: #272343;
+  --🎨-text: #2d334a;
+  --🎨-link: #272343;
+  --🎨-card-background: #fffffe;
+  --🎨-card-heading: #272343;
+  --🎨-card-text: #2d334a;
+  --🎨-form-input-background: #fffffe;
+  --🎨-form-input-text: #272343;
+  --🎨-form-button-background: #272343;
+  --🎨-form-button-text: #fffffe;
+  --🎨-subheading: #2d334a;
+  --🎨-art-stroke: #272343;
+  --🎨-art-primary: #fffffe;
+  --🎨-art-accent: #ffd803;
+  --🎨-art-secondary: #e3f6f5;
+  --🎨-art-tertiary: #bae8e8;
+}
+
+@media (prefers-color-scheme: dark) {
+  .🐼-theme-happyhues-palettes-palette2 {
+    --🎨-background: #242629;
+    --🎨-heading: #fffffe;
+    --🎨-text: #94a1b2;
+    --🎨-link: #7f5af0;
+    --🎨-card-background: #16161a;
+    --🎨-card-heading: #fffffe;
+    --🎨-card-text: #94a1b2;
+    --🎨-form-input-background: #16161a;
+    --🎨-form-input-text: #fffffe;
+    --🎨-form-button-background: #7f5af0;
+    --🎨-form-button-text: #fffffe;
+    --🎨-subheading: #94a1b2;
+    --🎨-art-stroke: #010101;
+    --🎨-art-primary: #fffffe;
+    --🎨-art-accent: #7f5af0;
+    --🎨-art-secondary: #72757e;
+    --🎨-art-tertiary: #2cb67d;
+  }
+}
+
+.🐼-theme-happyhues-sizing-base {
+  --📏-spacing-1: 0.1em;
+  --📏-spacing-2: 0.2em;
+  --📏-spacing-3: 0.4em;
+  --📏-spacing-4: 0.6em;
+  --📏-spacing-5: 0.8em;
+  --📏-spacing-6: 1em;
+  --📏-spacing-7: 1.5em;
+  --📏-spacing-8: 2em;
+  --📏-container-padding: var(--📏-spacing-6);
+  --📏-text-container-padding: var(--📏-container-padding);
+  --📏-page-max-width: 50em;
+  --📏-art-stroke-1: 0.1em;
+  --📏-art-stroke-2: 0.5em;
+  --📏-art-stroke-3: 0.75em;
+  --📏-border-radius-1: 0.25em;
+  --📏-border-radius-2: 0.5em;
+  --📏-border-radius-3: 0.75em;
+  --📏-font-size-1: 1em;
+  --📏-font-size-2: 1.5em;
+  --📏-font-size-3: 2.5em;
+  --📏-line-height-1: 1;
+  --📏-line-height-2: 1.3;
+  --📏-line-height-3: 1.6;
+  --📏-line-height-4: 1.8;
+}
+
+@media (prefers-color-scheme: dark) {
+  .🐼-theme-happyhues-sizing-base {
+    --📏-spacing-1: 0.1em;
+    --📏-spacing-2: 0.2em;
+    --📏-spacing-3: 0.4em;
+    --📏-spacing-4: 0.6em;
+    --📏-spacing-5: 0.8em;
+    --📏-spacing-6: 1em;
+    --📏-spacing-7: 1.5em;
+    --📏-spacing-8: 2em;
+    --📏-container-padding: var(--📏-spacing-6);
+    --📏-text-container-padding: var(--📏-container-padding);
+    --📏-page-max-width: 50em;
+    --📏-art-stroke-1: 0.1em;
+    --📏-art-stroke-2: 0.5em;
+    --📏-art-stroke-3: 0.75em;
+    --📏-border-radius-1: 0.25em;
+    --📏-border-radius-2: 0.5em;
+    --📏-border-radius-3: 0.75em;
+    --📏-font-size-1: 1em;
+    --📏-font-size-2: 1.5em;
+    --📏-font-size-3: 2.5em;
+    --📏-line-height-1: 1;
+    --📏-line-height-2: 1.3;
+    --📏-line-height-3: 1.6;
+    --📏-line-height-4: 1.8;
+  }
+}
+
+.🐼-theme-happyhues-sizing-size1 {
+  --📏-spacing-1: 0.1em;
+  --📏-spacing-2: 0.2em;
+  --📏-spacing-3: 0.3em;
+  --📏-spacing-4: 0.4em;
+  --📏-spacing-5: 0.5em;
+  --📏-spacing-6: 0.75em;
+  --📏-spacing-7: 1em;
+  --📏-spacing-8: 1.5em;
+  --📏-container-padding: var(--📏-spacing-6);
+  --📏-text-container-padding: var(--📏-container-padding);
+}
+
+@media (prefers-color-scheme: dark) {
+  .🐼-theme-happyhues-sizing-size1 {
+    --📏-spacing-1: 0.1em;
+    --📏-spacing-2: 0.2em;
+    --📏-spacing-3: 0.3em;
+    --📏-spacing-4: 0.4em;
+    --📏-spacing-5: 0.5em;
+    --📏-spacing-6: 0.75em;
+    --📏-spacing-7: 1em;
+    --📏-spacing-8: 1.5em;
+    --📏-container-padding: var(--📏-spacing-6);
+    --📏-text-container-padding: var(--📏-container-padding);
+  }
+}
+
+.🐼-theme-happyhues-sizing-size2 {
+  --📏-spacing-1: 0.25em;
+  --📏-spacing-2: 0.5em;
+  --📏-spacing-3: 0.75em;
+  --📏-spacing-4: 1em;
+  --📏-spacing-5: 1.5em;
+  --📏-spacing-6: 2em;
+  --📏-spacing-7: 3em;
+  --📏-spacing-8: 4em;
+  --📏-container-padding: var(--📏-spacing-6);
+  --📏-text-container-padding: var(--📏-container-padding);
+}
+
+@media (prefers-color-scheme: dark) {
+  .🐼-theme-happyhues-sizing-size2 {
+    --📏-spacing-1: 0.25em;
+    --📏-spacing-2: 0.5em;
+    --📏-spacing-3: 0.75em;
+    --📏-spacing-4: 1em;
+    --📏-spacing-5: 1.5em;
+    --📏-spacing-6: 2em;
+    --📏-spacing-7: 3em;
+    --📏-spacing-8: 4em;
+    --📏-container-padding: var(--📏-spacing-6);
+    --📏-text-container-padding: var(--📏-container-padding);
+  }
+}
