@@ -1,5 +1,5 @@
-import type { LinksFunction } from '@netlify/remix-runtime'
 import { cssBundleHref } from '@remix-run/css-bundle'
+import type { LinksFunction } from '@remix-run/node'
 import {
   Links,
   LiveReload,
@@ -9,20 +9,33 @@ import {
   ScrollRestoration,
 } from '@remix-run/react'
 
-import './styles/pandastyle/pandastyle-globals.css'
-import './styles/pandastyle/pandastyle-theme-happyhues.css'
-import './styles/pandastyle/pandastyle-code.css'
-import './styles/pandastyle/pandastyle-elements.css'
-import './styles/pandastyle/pandastyle-layout.css'
-import './styles/pandastyle/pandastyle-stacks.css'
-import './styles/pandastyle/pandastyle-typography.css'
-import './styles/pandastyle/pandastyle-forms.css'
-import './styles/pandastyle/pandastyle-cards.css'
-import './styles/pandastyle/pandastyle-decorations.css'
+import pandastyleCardsHref from './styles/pandastyle/pandastyle-cards.css'
+import pandastyleCodeHref from './styles/pandastyle/pandastyle-code.css'
+import pandastyleDecorationsHref from './styles/pandastyle/pandastyle-decorations.css'
+import pandastyleElementsHref from './styles/pandastyle/pandastyle-elements.css'
+import pandastyleFormsHref from './styles/pandastyle/pandastyle-forms.css'
+import pandastyleGlobalsHref from './styles/pandastyle/pandastyle-globals.css'
+import pandastyleLayoutHref from './styles/pandastyle/pandastyle-layout.css'
+import pandastyleStacksHref from './styles/pandastyle/pandastyle-stacks.css'
+import pandastyleThemeHappyhuesHref from './styles/pandastyle/pandastyle-theme-happyhues.css'
+import pandastyleTypographyHref from './styles/pandastyle/pandastyle-typography.css'
 
 export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: pandastyleGlobalsHref },
+  { rel: 'stylesheet', href: pandastyleThemeHappyhuesHref },
+  { rel: 'stylesheet', href: pandastyleCodeHref },
+  { rel: 'stylesheet', href: pandastyleElementsHref },
+  { rel: 'stylesheet', href: pandastyleLayoutHref },
+  { rel: 'stylesheet', href: pandastyleStacksHref },
+  { rel: 'stylesheet', href: pandastyleTypographyHref },
+  { rel: 'stylesheet', href: pandastyleFormsHref },
+  { rel: 'stylesheet', href: pandastyleCardsHref },
+  { rel: 'stylesheet', href: pandastyleDecorationsHref },
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
 ]
+
+// export const links: LinksFunction = () => [
+// ]
 
 export default function App() {
   return (
