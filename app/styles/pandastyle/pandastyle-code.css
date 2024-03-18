@@ -1,0 +1,83 @@
+.🐼-code {
+  --expand-total: 0.3em;
+  --initial-inset: 0.2em;
+
+  font-size: 0.8em;
+  color: var(--🎨-code-color);
+  padding-left: var(--📏-spacing-2);
+  padding-right: var(--📏-spacing-2);
+
+  /* A background-color can't be positioned using background-position so workaround that with a generated image */
+  background-image: linear-gradient(
+    to top,
+    var(--🎨-code-background),
+    var(--🎨-code-background) 50%,
+    var(--🎨-code-background) 50%
+  );
+
+  /* Position and size are relative to the origin */
+  background-origin: border-box;
+  background-position: var(--initial-inset) var(--initial-inset);
+  background-size: calc(100% - (var(--initial-inset) * 2))
+    calc(100% - (var(--initial-inset) * 2));
+  background-repeat: no-repeat;
+  transition: all 0.3s ease-in-out;
+  border: var(--expand-total) solid transparent;
+}
+
+.🐼-code:hover {
+  background-position: 0 0;
+  background-size: 100% 100%;
+}
+
+.🐼-code-block {
+  --expand-total: 1.2em;
+  --initial-inset: 0.2em;
+  padding: 0;
+  margin-left: calc(-1em);
+  margin-right: calc(-1em);
+  font-family: monospace;
+  white-space: pre;
+  overflow: auto;
+}
+
+.🐼-code [data-node-type='comment'] {
+  color: var(--🎨-code-comment);
+  font-style: italic;
+}
+
+.🐼-code [data-node-type='importdeclaration'],
+.🐼-code [data-node-type='variabledeclaration'],
+.🐼-code [data-node-type='exportnameddeclaration'],
+.🐼-code [data-node-type='returnstatement'] {
+  color: var(--🎨-code-keyword);
+}
+
+.🐼-code [data-node-type='jsxattribute'],
+.🐼-code [data-node-type='jsxidentifier'] {
+  color: var(--🎨-code-name);
+}
+
+.🐼-code [data-node-type='literal'],
+.🐼-code [data-node-type='templateliteral'] {
+  color: var(--🎨-code-literal);
+}
+
+/* unused? 
+  color: var(--🎨-code-string);
+  color: var(--🎨-code-variable);
+  color: var(--🎨-code-symbol);
+*/
+
+.🐼-code [data-node-type='identifier'] {
+  color: var(--🎨-code-built-in);
+}
+
+/* Nested things we want to reset back to the standard code color */
+.🐼-code [data-node-type='importnamespacespecifier'],
+.🐼-code [data-node-type='arraypattern'],
+.🐼-code [data-node-type='arrowfunctionexpression'],
+.🐼-code [data-node-type='jsxfragment'],
+.🐼-code [data-node-type='jsxexpressioncontainer'] {
+  color: var(--🎨-code-color);
+}

@@ -1,0 +1,12 @@
+.🐼-card {
+  --📏-card-padding: var(--📏-text-container-padding);
+  --📏-card-padding-horizontal: var(--📏-card-padding);
+  --📏-card-padding-vertical: calc(var(--📏-card-padding) / 2);
+
+  padding-top: var(--📏-card-padding-vertical);
+  padding-right: var(--📏-card-padding-horizontal);
+  padding-bottom: var(--📏-card-padding-vertical);
+  padding-left: var(--📏-card-padding-horizontal);
+  background-color: var(--🎨-card-background);
+  color: var(--🎨-card-text);
+}
