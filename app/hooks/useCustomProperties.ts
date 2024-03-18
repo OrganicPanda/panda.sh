@@ -1,49 +1,37 @@
-import type React from 'react';
 import { useRef, useState, useEffect, useMemo } from 'react'
 
-type Styles = {
-  '--🎨-background': string | null
-  '--🎨-heading': string | null
-  '--🎨-art-accent': string | null
-  '--🎨-art-primary': string | null
+import { useDarkMode } from './useDarkMode'
+
+const extractCustomProperties = (element: Element, properties: string[]) => {
+  const style = global.getComputedStyle(element)
+  return properties.reduce((previous, current) => {
+    previous[current] = style.getPropertyValue(current) || null
+    return previous
+  }, {} as Record<string, string | null>)
 }
 
-type CustomProperties<T extends keyof Styles> = Pick<Styles, T>
-
-export const useCustomProperties = <T extends keyof Styles>(
-  properties: T[]
+export const useCustomProperties = <K extends string>(
+  properties: K[]
 ): {
   ref: React.Ref<HTMLElement>
-  customProperties: CustomProperties<T> | null
+  customProperties: Record<K, string | null>
 } => {
+  const darkMode = useDarkMode()
   const elRef = useRef<HTMLElement>(null)
-  const [customProperties, setCustomProperties] = useState<Pick<
-    Styles,
-    T
-  > | null>(null)
+  const [customProperties, setCustomProperties] = useState(
+    {} as Record<K, string | null>
+  )
 
   useEffect(() => {
-    const extractCustomProperties = () => {
-      if (elRef.current) {
-        const style = global.getComputedStyle(elRef.current)
-        const propertyValues: CustomProperties<T> = properties.reduce(
-          (previous, current) => {
-            previous[current] = style.getPropertyValue(current) || null
-            return previous
-          },
-          {} as CustomProperties<T>
-        )
+    if (!elRef.current) return
 
-        setCustomProperties(propertyValues)
-      }
-    }
-    extractCustomProperties()
-
-    const mql = global.window.matchMedia('(prefers-color-scheme: dark)')
-    mql.onchange = () => {
-      extractCustomProperties()
-    }
-  }, [])
+    setCustomProperties(
+      extractCustomProperties(elRef.current, properties) as Record<
+        K,
+        string | null
+      >
+    )
+  }, [darkMode, ...properties])
 
   return useMemo(
     () => ({
