@@ -9,14 +9,14 @@ export enum AxisAlignment {
 }
 
 export const withAxisAlignment = ({
-  position,
+  position = new Vector3(0, 0, 0),
   size,
   x = AxisAlignment.CENTER,
   y = AxisAlignment.CENTER,
   z = AxisAlignment.CENTER,
-  offsets,
+  offsets = new Vector3(0, 0, 0),
 }: {
-  position: Vector3
+  position?: Vector3
   size: BoxSize
   x?: AxisAlignment
   y?: AxisAlignment
@@ -38,10 +38,7 @@ export const withAxisAlignment = ({
   if (z === AxisAlignment.START) alignedZ = -depth / 2
   if (z === AxisAlignment.END) alignedZ = depth / 2
 
-  const transformPosition = new Vector3(alignedX, alignedY, alignedZ)
-
-  positionCopy.add(transformPosition)
-  if (offsets) positionCopy.add(offsets)
-
   return positionCopy
+    .add(new Vector3(alignedX, alignedY, alignedZ))
+    .add(offsets)
 }

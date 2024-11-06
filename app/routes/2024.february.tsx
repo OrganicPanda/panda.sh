@@ -41,21 +41,16 @@ const ExampleTwo = () => {
           <DebugBox
             color={customProperties?.['--🎨-background'] || 'green'}
             position={new Vector3(0, 0, 0)}
-            size={[1, 0.5, 0.5]}
-          />
-
-          <DebugBox
-            color={customProperties?.['--🎨-art-accent'] || 'red'}
-            position={withAxisAlignment({
-              position: new Vector3(0, 0, 0),
-              x: AxisAlignment.END,
-              y: AxisAlignment.END,
-              z: AxisAlignment.END,
-              offsets: new Vector3(0.25, 0.25, 0.25),
-              size: [0.5, 0.5, 0.5],
-            })}
             size={[0.5, 0.5, 0.5]}
           />
+
+          <group scale={1} position={[0.25, 0.25, 0.25]}>
+            <DebugBox
+              color={customProperties?.['--🎨-art-accent'] || 'red'}
+              position={new Vector3(0, 0, 0)}
+              size={[0.5, 0.5, 0.5]}
+            />
+          </group>
         </group>
       </ExampleScene>
     </div>
