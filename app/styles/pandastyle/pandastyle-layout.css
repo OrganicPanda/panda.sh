@@ -1,0 +1,32 @@
+.🐼-section {
+  padding: var(--📏-container-padding);
+  background-color: var(--🎨-background);
+}
+
+.🐼-section-clear {
+  background-color: none;
+}
+
+.🐼-section-item + .🐼-section-item {
+  margin-top: var(--📏-spacing-6);
+}
+
+.🐼-section-hero {
+  padding-top: calc(var(--📏-container-padding) * 4);
+  padding-bottom: calc(var(--📏-container-padding) * 4);
+}
+
+.🐼-section-text {
+  padding-top: calc(var(--📏-container-padding) * 2);
+  padding-bottom: calc(var(--📏-container-padding) * 2);
+}
+
+.🐼-section-page {
+  max-width: var(--📏-page-max-width);
+  margin: 0 auto;
+}
+
+.🐼-section-page-highlight {
+  max-width: calc(var(--📏-page-max-width) * 1.2);
+  margin: 0 auto;
+}

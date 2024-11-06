@@ -1,34 +1,51 @@
 {
   "name": "panda.sh",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
+  "sideEffects": false,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "format": "prettier src/**/*.tsx",
-    "format:fix": "prettier src/**/*.tsx  --write",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "build": "remix build",
+    "dev": "remix dev",
+    "start": "npx --yes netlify-cli serve",
+    "typecheck": "tsc -b",
+    "format": "prettier-eslint \"app/**/*.tsx\"",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:fix": "eslint --cache --cache-location ./node_modules/.cache/eslint --ext .js,.jsx,.ts,.tsx . --fix"
   },
   "dependencies": {
+    "@netlify/functions": "^2.0.0",
+    "@netlify/remix-adapter": "^2.0.0",
+    "@react-three/drei": "^9.96.5",
+    "@react-three/fiber": "^8.15.15",
+    "@remix-run/css-bundle": "^2.5.1",
+    "@remix-run/node": "^2.5.1",
+    "@remix-run/react": "^2.5.1",
+    "acorn": "^8.11.3",
+    "acorn-typescript": "^1.4.13",
     "classnames": "^2.3.2",
-    "next": "13.0.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "cross-env": "^7.0.3",
+    "estree-walker": "^3.0.3",
+    "highlight.js": "^11.9.0",
+    "jotai": "^2.6.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.160.1"
   },
   "devDependencies": {
-    "@types/node": "18.11.9",
-    "@types/react": "18.0.25",
-    "@types/react-dom": "18.0.9",
-    "@typescript-eslint/eslint-plugin": "^5.43.0",
-    "@typescript-eslint/parser": "^5.43.0",
+    "@remix-run/dev": "^2.5.1",
+    "@remix-run/eslint-config": "^2.5.1",
+    "@remix-run/serve": "^2.5.1",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/three": "^0.160.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.27.0",
-    "eslint-config-next": "13.0.3",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.31.10",
-    "prettier": "^2.7.1",
-    "typescript": "^4.9.3"
+    "prettier-eslint": "^16.3.0",
+    "typescript": "^5.2.2",
+    "yarn": "^1.22.19"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

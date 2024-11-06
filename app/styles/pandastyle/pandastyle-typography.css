@@ -1,0 +1,80 @@
+.🐼-title {
+  margin: 0;
+  font-size: var(--📏-font-size-2);
+  font-weight: 200;
+  line-height: 1;
+}
+
+.🐼-paragraph {
+}
+
+.🐼-heading {
+  margin: 0;
+  color: var(--🎨-heading);
+}
+
+.🐼-heading-1 {
+  margin: 0;
+  /* font-size: var(--📏-font-size-3);
+  font-weight: 100; */
+}
+
+.🐼-heading-2 {
+  margin: 0;
+  /* font-size: var(--📏-font-size-3);
+  font-weight: 100; */
+}
+
+.🐼-heading-3 {
+  margin: 0;
+  /* font-size: var(--📏-font-size-3);
+  font-weight: 100; */
+}
+
+.🐼-heading-1 + .🐼-heading-2 {
+  margin-top: var(--📏-spacing-3);
+}
+
+.🐼-heading-2 + .🐼-heading-3 {
+  margin-top: var(--📏-spacing-3);
+}
+
+.🐼-heading + .🐼-text {
+  margin-top: var(--📏-spacing-2);
+}
+
+.🐼-text + .🐼-text {
+  margin-top: var(--📏-spacing-2);
+}
+
+.🐼-subheading {
+  margin: 0;
+  color: var(--🎨-subheading);
+}
+
+.🐼-text {
+  margin: 0;
+  color: var(--🎨-text);
+}
+
+/* Tactic from css-tricks:
+ * https://codepen.io/team/css-tricks/pen/OJOXWPp 
+ */
+.🐼-link {
+  color: var(--🎨-text);
+  font-weight: 500;
+
+  background-image: linear-gradient(
+    to top,
+    transparent,
+    transparent 50%,
+    var(--🎨-art-accent) 50%
+  );
+  background-size: 100% 200%;
+  background-position: 0 calc(-100% - 0.3em);
+  transition: all 0.3s ease-in-out;
+}
+
+.🐼-link:hover {
+  background-position: 0 0;
+}

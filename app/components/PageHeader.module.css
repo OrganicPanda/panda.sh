@@ -1,0 +1,17 @@
+.sticky-wrapper {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  background-color: var(--🎨-background);
+  backdrop-filter: blur(5px);
+}
+
+.hr {
+  border: 0;
+  height: 0;
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 100%;
+  border-bottom: var(--📏-art-stroke-1) solid var(--🎨-border);
+  margin: 0;
+}
