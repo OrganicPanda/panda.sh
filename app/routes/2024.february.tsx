@@ -2,10 +2,6 @@ import { Vector3 } from 'three'
 
 import { DebugBox } from '~/components/3d/DebugBox'
 import { ExampleScene } from '~/components/3d/ExampleScene'
-import {
-  AxisAlignment,
-  withAxisAlignment,
-} from '~/components/3d/utils/withAxisAlignment'
 import { CodeBlock } from '~/components/CodeBlock'
 import { PageHeader } from '~/components/PageHeader'
 import { Anchor, Code } from '~/components/Typography'

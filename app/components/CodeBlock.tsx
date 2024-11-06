@@ -94,22 +94,22 @@ function wrapText(text: string, ranges: Range[]): string {
 
 // Maybe convert hljs styles to css custom properties
 // Then convert this to actuall styles so nesting can be controlled
-const classNamesForNode = {
-  literal: 'hljs-literal',
-  importdeclaration: 'hljs-keyword',
-  importnamespacespecifier: 'hljs-default',
-  identifier: 'hljs-title',
-  variabledeclaration: 'hljs-keyword',
-  exportnameddeclaration: 'hljs-keyword',
-  returnstatement: 'hljs-keyword',
-  arraypattern: 'hljs-default',
-  arrowfunctionexpression: 'hljs-default',
-  jsxfragment: 'hljs-tag',
-  jsxidentifier: 'hljs-name',
-  jsxexpressioncontainer: 'hljs-default',
-  templateliteral: 'hljs-literal',
-  jsxattribute: 'hljs-attr', // Overridden by jsxidentifier: 'hljs-name',
-}
+// const classNamesForNode = {
+//   literal: 'hljs-literal',
+//   importdeclaration: 'hljs-keyword',
+//   importnamespacespecifier: 'hljs-default',
+//   identifier: 'hljs-title',
+//   variabledeclaration: 'hljs-keyword',
+//   exportnameddeclaration: 'hljs-keyword',
+//   returnstatement: 'hljs-keyword',
+//   arraypattern: 'hljs-default',
+//   arrowfunctionexpression: 'hljs-default',
+//   jsxfragment: 'hljs-tag',
+//   jsxidentifier: 'hljs-name',
+//   jsxexpressioncontainer: 'hljs-default',
+//   templateliteral: 'hljs-literal',
+//   jsxattribute: 'hljs-attr', // Overridden by jsxidentifier: 'hljs-name',
+// }
 
 type CodeBlockProps = React.HTMLProps<HTMLParagraphElement> & {
   children: React.ReactNode
@@ -132,18 +132,19 @@ export const CodeBlock = ({
   try {
     const finalText = children.trim()
 
-    const ast = Parser.extend(
-      typescript({
-        // dts: true,
-        jsx: {
-          allowNamespaces: true,
-        },
+    const ast = (Parser as any)
+      .extend(
+        typescript({
+          jsx: {
+            allowNamespaces: true,
+          },
+        })
+      )
+      .parse(finalText, {
+        sourceType: 'module',
+        ecmaVersion: 'latest',
+        locations: true,
       })
-    ).parse(finalText, {
-      sourceType: 'module',
-      ecmaVersion: 'latest',
-      locations: true,
-    })
 
     // let currentIndex = 0
     const rangesToWrap: Range[] = []
@@ -166,7 +167,7 @@ export const CodeBlock = ({
       })
     }
 
-    const NOOP = () => {}
+    // const NOOP = () => {}
 
     // class MyDynamicObject {
     //   constructor() {

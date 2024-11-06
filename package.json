@@ -9,7 +9,9 @@
     "dev": "remix dev",
     "start": "npx --yes netlify-cli serve",
     "typecheck": "tsc -b",
-    "format": "prettier-eslint \"app/**/*.tsx\""
+    "format": "prettier-eslint \"app/**/*.tsx\"",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:fix": "eslint --cache --cache-location ./node_modules/.cache/eslint --ext .js,.jsx,.ts,.tsx . --fix"
   },
   "dependencies": {
     "@netlify/functions": "^2.0.0",

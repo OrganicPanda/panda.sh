@@ -1,0 +1,9 @@
+node_modules/
+build/
+public/
+dist/
+.cache/
+.netlify/
+coverage/
+*.config.js
+*.config.ts 
