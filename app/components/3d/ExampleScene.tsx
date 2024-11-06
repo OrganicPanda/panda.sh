@@ -1,4 +1,4 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps } from 'react'
 import React from 'react'
 
 import {
@@ -25,16 +25,15 @@ export const ExampleScene = ({
   children: React.ReactNode
 }) => {
   const [orbitLock] = useAtom(orbitLockAtom)
-  const { ref, customProperties } = useCustomProperties([
+  const { CustomProperties, customProperties } = useCustomProperties([
     '--🎨-background',
     '--🎨-heading',
     '--🎨-art-accent',
   ])
 
   return (
-    <div
+    <CustomProperties
       className={`🐼-theme-happyhues-palettes-palette1 ${styles['canvas-wrapper']}`}
-      ref={ref as React.Ref<HTMLDivElement>}
     >
       <Canvas
         shadows
@@ -76,6 +75,6 @@ export const ExampleScene = ({
           />
         </GizmoHelper>
       </Canvas>
-    </div>
+    </CustomProperties>
   )
 }

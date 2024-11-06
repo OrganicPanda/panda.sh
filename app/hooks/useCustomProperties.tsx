@@ -15,6 +15,7 @@ export const useCustomProperties = <K extends string>(
 ): {
   ref: React.Ref<HTMLElement>
   customProperties: Record<K, string | null>
+  CustomProperties: React.FC<React.HTMLAttributes<HTMLDivElement>>
 } => {
   const darkMode = useDarkMode()
   const elRef = useRef<HTMLElement>(null)
@@ -31,12 +32,23 @@ export const useCustomProperties = <K extends string>(
         string | null
       >
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [darkMode, ...properties])
+
+  const CustomProperties = ({
+    children,
+    ...restProps
+  }: React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) => (
+    <div ref={elRef as React.Ref<HTMLDivElement>} {...restProps}>
+      {children}
+    </div>
+  )
 
   return useMemo(
     () => ({
       ref: elRef,
       customProperties,
+      CustomProperties,
     }),
     [customProperties]
   )

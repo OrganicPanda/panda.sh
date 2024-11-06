@@ -24,11 +24,13 @@ const ExampleOne = () => {
 }
 
 const ExampleTwo = () => {
-  const { ref, customProperties } = useCustomProperties(['--🎨-art-accent'])
+  const { CustomProperties, customProperties } = useCustomProperties([
+    '--🎨-art-accent',
+  ])
   const color = customProperties['--🎨-art-accent'] || 'green'
 
   return (
-    <div ref={ref as React.Ref<HTMLDivElement>}>
+    <CustomProperties>
       <Canvas camera={{ position: [0, 0, 3] }}>
         <ambientLight intensity={0.8} />
         <directionalLight position={[0, 4, 4]} />
@@ -39,7 +41,7 @@ const ExampleTwo = () => {
           <meshStandardMaterial color={color} />
         </mesh>
       </Canvas>
-    </div>
+    </CustomProperties>
   )
 }
 
@@ -141,6 +143,7 @@ export const useCustomProperties = <K extends string>(
 ): {
   ref: React.Ref<HTMLElement>
   customProperties: Record<K, string | null>
+  CustomProperties: React.FC<React.HTMLAttributes<HTMLDivElement>>
 } => {
   const darkMode = useDarkMode()
   const elRef = useRef<HTMLElement>(null)
@@ -157,27 +160,38 @@ export const useCustomProperties = <K extends string>(
         string | null
       >
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [darkMode, ...properties])
+
+  const CustomProperties = ({
+    children,
+    ...restProps
+  }: React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) => (
+    <div ref={elRef as React.Ref<HTMLDivElement>} {...restProps}>
+      {children}
+    </div>
+  )
 
   return useMemo(
     () => ({
       ref: elRef,
       customProperties,
+      CustomProperties,
     }),
     [customProperties]
   )
 }
 
 const ExampleTwo = () => {
-  const { ref, customProperties } = useCustomProperties(['--🎨-art-accent'])
+  const { CustomProperties, customProperties } = useCustomProperties(['--🎨-art-accent'])
   const color = customProperties['--🎨-art-accent'] || 'green'
 
   return (
-    <div ref={ref as React.Ref<HTMLDivElement>}>
+    <CustomProperties>
       <Canvas>
         <TorusKnot color={color} />
       </Canvas>
-    </div>
+    </CustomProperties>
   )
 }
           `}</CodeBlock>

@@ -1,18 +1,22 @@
 import { Vector3 } from 'three'
 
+import { Alignment } from '~/components/3d/Alignment'
 import { DebugBox } from '~/components/3d/DebugBox'
 import { ExampleScene } from '~/components/3d/ExampleScene'
+import { AxisAlignment } from '~/components/3d/utils/withAxisAlignment'
 import { CodeBlock } from '~/components/CodeBlock'
 import { PageHeader } from '~/components/PageHeader'
 import { Anchor, Code } from '~/components/Typography'
 import { useCustomProperties } from '~/hooks/useCustomProperties'
 
 const ExampleOne = () => {
-  const { ref, customProperties } = useCustomProperties(['--🎨-art-accent'])
+  const { CustomProperties, customProperties } = useCustomProperties([
+    '--🎨-art-accent',
+  ])
   const color = customProperties?.['--🎨-art-accent'] || 'green'
 
   return (
-    <div ref={ref as React.Ref<HTMLDivElement>}>
+    <CustomProperties>
       <ExampleScene>
         <DebugBox
           color={color}
@@ -20,36 +24,38 @@ const ExampleOne = () => {
           size={[1, 1, 1]}
         />
       </ExampleScene>
-    </div>
+    </CustomProperties>
   )
 }
 
 const ExampleTwo = () => {
-  const { ref, customProperties } = useCustomProperties([
+  const { CustomProperties, customProperties } = useCustomProperties([
     '--🎨-background',
     '--🎨-art-accent',
   ])
 
   return (
-    <div ref={ref as React.Ref<HTMLDivElement>}>
+    <CustomProperties>
       <ExampleScene>
-        <group position={new Vector3(0, 0, 0)}>
+        <DebugBox
+          color={customProperties?.['--🎨-background'] || 'green'}
+          position={new Vector3(0, 0, 0)}
+          size={[0.5, 0.5, 0.5]}
+        />
+
+        <Alignment
+          x={AxisAlignment.CENTER}
+          y={AxisAlignment.CENTER}
+          z={AxisAlignment.CENTER}
+        >
           <DebugBox
-            color={customProperties?.['--🎨-background'] || 'green'}
-            position={new Vector3(0, 0, 0)}
+            color={customProperties?.['--🎨-art-accent'] || 'red'}
+            position={new Vector3(0.25, 0.25, 0.25)}
             size={[0.5, 0.5, 0.5]}
           />
-
-          <group scale={1} position={[0.25, 0.25, 0.25]}>
-            <DebugBox
-              color={customProperties?.['--🎨-art-accent'] || 'red'}
-              position={new Vector3(0, 0, 0)}
-              size={[0.5, 0.5, 0.5]}
-            />
-          </group>
-        </group>
+        </Alignment>
       </ExampleScene>
-    </div>
+    </CustomProperties>
   )
 }
 
