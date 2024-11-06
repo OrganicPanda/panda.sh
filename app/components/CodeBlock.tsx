@@ -198,7 +198,6 @@ export const CodeBlock = ({
     //     { start: 7, end: 11, wrapWith: ["<strong>", "</strong>"] }, // wraps 'this'
     //     { start: 17, end: 23, wrapWith: ["<em>", "</em>"] }        // wraps 'sample'
     // ];
-    console.log('rangesToWrap', rangesToWrap)
 
     const output = wrapText(finalText, rangesToWrap)
     // const output = 'yo'
